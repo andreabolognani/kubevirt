@@ -106,6 +106,16 @@ func admitHotplug(newVolumes, oldVolumes []v1.Volume, newDisks, oldDisks []v1.Di
 	newDiskMap := getDiskMap(newDisks)
 	oldDiskMap := getDiskMap(oldDisks)
 
+	disksCapacity := 3
+	if len(newDiskMap) > disksCapacity {
+		return webhookutils.ToAdmissionResponse([]metav1.StatusCause{
+			{
+				Type:    metav1.CauseTypeFieldValueInvalid,
+				Message: fmt.Sprintf("capacity (%d) exceeded", disksCapacity),
+			},
+		})
+	}
+
 	permanentAr := verifyPermanentVolumes(newPermanentVolumeMap, oldPermanentVolumeMap, newDiskMap, oldDiskMap)
 	if permanentAr != nil {
 		return permanentAr
