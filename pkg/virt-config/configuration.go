@@ -263,6 +263,11 @@ func defaultClusterConfig(cpuArch string) *v1.KubeVirtConfiguration {
 				EmulatedMachines: strings.Split(DefaultPPC64LEEmulatedMachines, ","),
 				MachineType:      DefaultPPC64LEMachineType,
 			},
+			S390x: &v1.ArchSpecificConfiguration{
+				OVMFPath:         "",
+				EmulatedMachines: strings.Split(DefaultS390XEmulatedMachines, ","),
+				MachineType:      DefaultS390XMachineType,
+			},
 			DefaultArchitecture: runtime.GOARCH,
 		},
 		LiveUpdateConfiguration: &v1.LiveUpdateConfiguration{
@@ -324,6 +329,9 @@ func getCPUArchSpecificDefault(cpuArch string) (string, string, []string) {
 	case "ppc64le":
 		emulatedMachinesDefault := strings.Split(DefaultPPC64LEEmulatedMachines, ",")
 		return DefaultARCHOVMFPath, DefaultPPC64LEMachineType, emulatedMachinesDefault
+	case "s390x":
+		emulatedMachinesDefault := strings.Split(DefaultS390XEmulatedMachines, ",")
+		return DefaultARCHOVMFPath, DefaultS390XMachineType, emulatedMachinesDefault
 	default:
 		emulatedMachinesDefault := strings.Split(DefaultAMD64EmulatedMachines, ",")
 		return DefaultARCHOVMFPath, DefaultAMD64MachineType, emulatedMachinesDefault

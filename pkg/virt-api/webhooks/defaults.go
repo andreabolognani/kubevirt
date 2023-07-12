@@ -69,6 +69,9 @@ func setDefaultCPUArch(clusterConfig *virtconfig.ClusterConfig, spec *v1.Virtual
 	if IsARM64(spec) {
 		log.Log.V(4).Info("Apply Arm64 specific setting")
 		SetArm64Defaults(spec)
+	} else if IsS390X(spec) {
+		log.Log.V(4).Info("Apply s390x specific setting")
+		SetS390xDefaults(spec)
 	} else {
 		SetAmd64Defaults(spec)
 		setDefaultCPUModel(clusterConfig, spec)

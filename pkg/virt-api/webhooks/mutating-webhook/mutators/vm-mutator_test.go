@@ -170,12 +170,14 @@ var _ = Describe("VirtualMachine Mutator", func() {
 			Expect(vmSpec.Template.Spec.Domain.Machine.Type).To(Equal("pseries"))
 		} else if webhooks.IsARM64(&vmSpec.Template.Spec) {
 			Expect(vmSpec.Template.Spec.Domain.Machine.Type).To(Equal("virt"))
+		} else if webhooks.IsS390X(&vmSpec.Template.Spec) {
+			Expect(vmSpec.Template.Spec.Domain.Machine.Type).To(Equal("s390-ccw-virtio"))
 		} else {
 			Expect(vmSpec.Template.Spec.Domain.Machine.Type).To(Equal("q35"))
 		}
 	})
 
-	DescribeTable("should apply configurable defaults on VM create", func(arch string, amd64MachineType string, arm64MachineType string, ppcle64MachineType string, result string) {
+	DescribeTable("should apply configurable defaults on VM create", func(arch string, amd64MachineType string, arm64MachineType string, ppcle64MachineType string, s390xMachineType, result string) {
 		testutils.UpdateFakeKubeVirtClusterConfig(kvInformer, &v1.KubeVirt{
 			Spec: v1.KubeVirtSpec{
 				Configuration: v1.KubeVirtConfiguration{
@@ -183,6 +185,7 @@ var _ = Describe("VirtualMachine Mutator", func() {
 						Amd64:   &v1.ArchSpecificConfiguration{MachineType: amd64MachineType},
 						Arm64:   &v1.ArchSpecificConfiguration{MachineType: arm64MachineType},
 						Ppc64le: &v1.ArchSpecificConfiguration{MachineType: ppcle64MachineType},
+						S390x:   &v1.ArchSpecificConfiguration{MachineType: s390xMachineType},
 					},
 				},
 			},
@@ -195,6 +198,7 @@ var _ = Describe("VirtualMachine Mutator", func() {
 		Entry("when override is for amd64 architecture", "amd64", machineTypeFromConfig, "", "", machineTypeFromConfig),
 		Entry("when override is for arm64 architecture", "arm64", "", machineTypeFromConfig, "", machineTypeFromConfig),
 		Entry("when override is for ppc64le architecture", "ppc64le", "", "", machineTypeFromConfig, machineTypeFromConfig),
+		Entry("when override is for s390x architecture", "s390x", "", "", machineTypeFromConfig, machineTypeFromConfig),
 	)
 
 	It("should not override default architecture with defaults on VM create", func() {
@@ -308,6 +312,7 @@ var _ = Describe("VirtualMachine Mutator", func() {
 						Amd64:   &v1.ArchSpecificConfiguration{MachineType: machineTypeFromConfig},
 						Arm64:   &v1.ArchSpecificConfiguration{MachineType: machineTypeFromConfig},
 						Ppc64le: &v1.ArchSpecificConfiguration{MachineType: machineTypeFromConfig},
+						S390x:   &v1.ArchSpecificConfiguration{MachineType: machineTypeFromConfig},
 					},
 				},
 			},

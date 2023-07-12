@@ -108,3 +108,9 @@ func IsPPC64(vmiSpec *v1.VirtualMachineInstanceSpec) bool {
 	}
 	return false
 }
+func IsS390X(vmiSpec *v1.VirtualMachineInstanceSpec) bool {
+	if vmiSpec.Architecture == "s390x" {
+		return true
+	}
+	return false
+}

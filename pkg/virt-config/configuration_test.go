@@ -133,7 +133,7 @@ var _ = Describe("test configuration", func() {
 		Entry("is empty, GetNodeSelectors should return the default", map[string]string{}, nil),
 	)
 
-	DescribeTable(" when machineType", func(cpuArch string, machineTypeAMD64 string, machineTypeARM64 string, machineTypePPC64le string, result string) {
+	DescribeTable(" when machineType", func(cpuArch string, machineTypeAMD64 string, machineTypeARM64 string, machineTypePPC64le string, machineTypeS390X string, result string) {
 		clusterConfig, _, _ := testutils.NewFakeClusterConfigUsingKVWithCPUArch(&v1.KubeVirt{
 			ObjectMeta: metav1.ObjectMeta{
 				Name:      "kubevirt",
@@ -145,6 +145,7 @@ var _ = Describe("test configuration", func() {
 						Amd64:   &v1.ArchSpecificConfiguration{MachineType: machineTypeAMD64},
 						Arm64:   &v1.ArchSpecificConfiguration{MachineType: machineTypeARM64},
 						Ppc64le: &v1.ArchSpecificConfiguration{MachineType: machineTypePPC64le},
+						S390x:   &v1.ArchSpecificConfiguration{MachineType: machineTypeS390X},
 					},
 				},
 			},
@@ -157,9 +158,11 @@ var _ = Describe("test configuration", func() {
 		Entry("when amd64 set, GetMachineType should return the value", "amd64", "pc-q35-3.0", "", "", "pc-q35-3.0"),
 		Entry("when arm64 set, GetMachineType should return the value", "arm64", "", "virt", "", "virt"),
 		Entry("when ppc64le set, GetMachineType should return the value", "ppc64le", "", "", "pseries", "pseries"),
+		Entry("when s390x set, GetMachineType should return the value", "s390x", "", "", "s390-ccw-virtio", "s390-ccw-virtio"),
 		Entry("when amd64 unset, GetMachineType should return the default with amd64", "amd64", "", "", "", virtconfig.DefaultAMD64MachineType),
 		Entry("when arm64 unset, GetMachineType should return the default with arm64", "arm64", "", "", "", virtconfig.DefaultAARCH64MachineType),
 		Entry("when ppc64le unset, GetMachineType should return the default with ppc64le", "ppc64le", "", "", "", virtconfig.DefaultPPC64LEMachineType),
+		Entry("when s390x unset, GetMachineType should return the default with s390x", "s390x", "", "", "", virtconfig.DefaultS390XMachineType),
 	)
 
 	Context("when deprecated machineType is set", func() {
@@ -237,7 +240,7 @@ var _ = Describe("test configuration", func() {
 		Entry("when negative, GetCPUAllocationRatio should return the default", -150, virtconfig.DefaultCPUAllocationRatio),
 	)
 
-	DescribeTable(" when emulatedMachines", func(cpuArch string, emuMachinesAMD64 []string, emuMachinesARM64 []string, emuMachinesAPC64le64 []string, result []string) {
+	DescribeTable(" when emulatedMachines", func(cpuArch string, emuMachinesAMD64 []string, emuMachinesARM64 []string, emuMachinesAPC64le64 []string, emuMachinesS390X []string, result []string) {
 		clusterConfig, _, _ := testutils.NewFakeClusterConfigUsingKVWithCPUArch(&v1.KubeVirt{
 			ObjectMeta: metav1.ObjectMeta{
 				Name:      "kubevirt",
@@ -249,6 +252,7 @@ var _ = Describe("test configuration", func() {
 						Amd64:   &v1.ArchSpecificConfiguration{EmulatedMachines: emuMachinesAMD64},
 						Arm64:   &v1.ArchSpecificConfiguration{EmulatedMachines: emuMachinesARM64},
 						Ppc64le: &v1.ArchSpecificConfiguration{EmulatedMachines: emuMachinesAPC64le64},
+						S390x:   &v1.ArchSpecificConfiguration{EmulatedMachines: emuMachinesS390X},
 					},
 				},
 			},
@@ -463,7 +467,7 @@ var _ = Describe("test configuration", func() {
 		Entry("when unset, GetSELinuxLauncherType should return the default", virtconfig.DefaultSELinuxLauncherType, virtconfig.DefaultSELinuxLauncherType),
 	)
 
-	DescribeTable(" when OVMFPath", func(cpuArch string, ovmfPathKeyAMD64 string, ovmfPathKeyARM64 string, ovmfPathKeyPPC64le64 string, result string) {
+	DescribeTable(" when OVMFPath", func(cpuArch string, ovmfPathKeyAMD64 string, ovmfPathKeyARM64 string, ovmfPathKeyPPC64le64 string, ovmfPathKeyS390X string, result string) {
 
 		kv := &v1.KubeVirt{
 			ObjectMeta: metav1.ObjectMeta{
@@ -476,6 +480,7 @@ var _ = Describe("test configuration", func() {
 						Amd64:   &v1.ArchSpecificConfiguration{OVMFPath: ovmfPathKeyAMD64},
 						Arm64:   &v1.ArchSpecificConfiguration{OVMFPath: ovmfPathKeyARM64},
 						Ppc64le: &v1.ArchSpecificConfiguration{OVMFPath: ovmfPathKeyPPC64le64},
+						S390x:   &v1.ArchSpecificConfiguration{OVMFPath: ovmfPathKeyS390X},
 					},
 				},
 			},

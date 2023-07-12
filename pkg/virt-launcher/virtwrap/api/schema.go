@@ -100,6 +100,7 @@ const (
 	HostDevicePCI  = "pci"
 	HostDeviceMDev = "mdev"
 	AddressPCI     = "pci"
+	AddressCCW     = "ccw"
 )
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object

@@ -59,7 +59,7 @@ func CreateDomainInterfaces(vmi *v1.VirtualMachineInstance, domain *api.Domain, 
 		ifaceType := GetInterfaceType(&nonAbsentIfaces[i])
 		domainIface := api.Interface{
 			Model: &api.Model{
-				Type: translateModel(vmi.Spec.Domain.Devices.UseVirtioTransitional, ifaceType),
+				Type: translateModel(vmi.Spec.Domain.Devices.UseVirtioTransitional, ifaceType, vmi.Spec.Architecture),
 			},
 			Alias: api.NewUserDefinedAlias(iface.Name),
 		}
@@ -90,7 +90,8 @@ func CreateDomainInterfaces(vmi *v1.VirtualMachineInstance, domain *api.Domain, 
 			domainIface.Type = "ethernet"
 			if iface.BootOrder != nil {
 				domainIface.BootOrder = &api.BootOrder{Order: *iface.BootOrder}
-			} else {
+			} else if !isS390X(vmi.Spec.Architecture) {
+				// s390x does not support setting ROM tuning, as it is for PCI Devices only
 				domainIface.Rom = &api.Rom{Enabled: "no"}
 			}
 		} else if iface.Macvtap != nil {
@@ -101,14 +102,18 @@ func CreateDomainInterfaces(vmi *v1.VirtualMachineInstance, domain *api.Domain, 
 			domainIface.Type = "ethernet"
 			if iface.BootOrder != nil {
 				domainIface.BootOrder = &api.BootOrder{Order: *iface.BootOrder}
-			} else {
+			} else if !isS390X(vmi.Spec.Architecture) {
+				// s390x does not support setting ROM tuning, as it is for PCI Devices only
 				domainIface.Rom = &api.Rom{Enabled: "no"}
 			}
 		}
 
 		if c.UseLaunchSecurity {
 			// It's necessary to disable the iPXE option ROM as iPXE is not aware of SEV
-			domainIface.Rom = &api.Rom{Enabled: "no"}
+			// s390x does not support setting ROM tuning, as it is for PCI Devices only
+			if !isS390X(vmi.Spec.Architecture) {
+				domainIface.Rom = &api.Rom{Enabled: "no"}
+			}
 			if ifaceType == v1.VirtIO {
 				if domainIface.Driver != nil {
 					domainIface.Driver.IOMMU = "on"
@@ -188,9 +193,9 @@ func GetResolvConfDetailsFromPod() ([][]byte, []string, error) {
 	return nameservers, searchDomains, err
 }
 
-func translateModel(useVirtioTransitional *bool, bus string) string {
+func translateModel(useVirtioTransitional *bool, bus string, archString string) string {
 	if bus == v1.VirtIO {
-		return InterpretTransitionalModelType(useVirtioTransitional)
+		return InterpretTransitionalModelType(useVirtioTransitional, archString)
 	}
 	return bus
 }
