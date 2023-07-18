@@ -42,7 +42,19 @@ RUN dnf install -y dnf-plugins-core && \
         wget \
         rubygems \
         diffutils \
-        skopeo && \
+        skopeo \
+        epel-release && \
+    dnf install -y --setopt=install_weak_deps=False \
+        gcc-s390x-linux-gnu \
+        gcc-c++-s390x-linux-gnu && \
+    dnf install -y  --installroot /usr/s390x-linux-gnu/sys-root --forcearch s390x --disablerepo=epel --enablerepo=crb --releasever 9 \
+        java-11-openjdk-devel \
+        libvirt-devel \
+        gcc \
+        gcc-c++ \
+        glibc-static \
+        libstdc++-static \
+        glibc-devel && \
     dnf clean -y all
 
 # Avoids the need to install sssd-client by disabling lookups
