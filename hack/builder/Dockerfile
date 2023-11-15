@@ -1,5 +1,6 @@
 FROM quay.io/centos/centos:stream9
 
+ARG ARCH
 ARG SONOBUOY_ARCH
 ARG BAZEL_ARCH
 
