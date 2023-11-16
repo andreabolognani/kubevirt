@@ -47,12 +47,16 @@ RUN dnf install -y dnf-plugins-core && \
     dnf clean -y all
 
 RUN if test "${ARCH}" = amd64; then \
+      dnf install -y --setopt=install_weak_deps=False --installroot /usr/aarch64-linux-gnu/sys-root --forcearch aarch64 --releasever 9 \
+          glibc-devel \
+          glibc-static && \
       dnf install -y --setopt=install_weak_deps=False --installroot /usr/s390x-linux-gnu/sys-root --forcearch s390x --releasever 9 \
           glibc-devel \
           glibc-static && \
       dnf install -y --setopt=install_weak_deps=False \
           epel-release && \
       dnf install -y --setopt=install_weak_deps=False \
+          gcc-aarch64-linux-gnu \
           gcc-s390x-linux-gnu && \
       dnf remove -y \
           epel-release && \
