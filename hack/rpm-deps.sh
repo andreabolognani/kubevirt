@@ -6,7 +6,7 @@ source hack/common.sh
 source hack/bootstrap.sh
 source hack/config.sh
 
-LIBVIRT_VERSION=${LIBVIRT_VERSION:-0:10.10.0-4.el9}
+LIBVIRT_VERSION=${LIBVIRT_VERSION:-0:10.10.0-6.0.shared_filesystems.el9}
 QEMU_VERSION=${QEMU_VERSION:-17:9.1.0-12.el9}
 SEABIOS_VERSION=${SEABIOS_VERSION:-0:1.16.3-4.el9}
 EDK2_VERSION=${EDK2_VERSION:-0:20241117-2.el9}
