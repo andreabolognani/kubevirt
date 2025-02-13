@@ -4336,10 +4336,10 @@ rpm(
 )
 
 rpm(
-    name = "libvirt-client-0__10.10.0-6.0.shared_filesystems.el9.x86_64",
-    sha256 = "a5af56a8250d0aaf81eb89c47d5563d961d2db1183d1f284ad4d651bf92dda81",
+    name = "libvirt-client-0__10.10.0-6.1.shared_filesystems.el9.x86_64",
+    sha256 = "d03bc5f59840a7e77d030236e78de19080f618a4b90362fbd77bde51c3780853",
     urls = [
-        "https://people.redhat.com/abologna/shared_filesystems/libvirt-client-10.10.0-6.0.shared_filesystems.el9.x86_64.rpm",
+        "https://people.redhat.com/abologna/shared_filesystems/libvirt-client-10.10.0-6.1.shared_filesystems.el9.x86_64.rpm",
     ],
 )
 
@@ -4362,10 +4362,10 @@ rpm(
 )
 
 rpm(
-    name = "libvirt-daemon-common-0__10.10.0-6.0.shared_filesystems.el9.x86_64",
-    sha256 = "2977b71622397825318742a02588feb46bf8556d36e57692f97c128b0e1cee38",
+    name = "libvirt-daemon-common-0__10.10.0-6.1.shared_filesystems.el9.x86_64",
+    sha256 = "533fc8c0cd4044ab5cf611e85145ff8fd13b8daeb746fc309d3b2341498d2d6a",
     urls = [
-        "https://people.redhat.com/abologna/shared_filesystems/libvirt-daemon-common-10.10.0-6.0.shared_filesystems.el9.x86_64.rpm",
+        "https://people.redhat.com/abologna/shared_filesystems/libvirt-daemon-common-10.10.0-6.1.shared_filesystems.el9.x86_64.rpm",
     ],
 )
 
@@ -4388,26 +4388,26 @@ rpm(
 )
 
 rpm(
-    name = "libvirt-daemon-driver-qemu-0__10.10.0-6.0.shared_filesystems.el9.x86_64",
-    sha256 = "7b0414339aa300ccfcb8f87c86fe0f72f6ff1b7c9c9f97e07adb95ff30931790",
+    name = "libvirt-daemon-driver-qemu-0__10.10.0-6.1.shared_filesystems.el9.x86_64",
+    sha256 = "a8e04d96c64cbd2a01455f280a51beb7e7e8fab45961fad32052f1f9eba9f041",
     urls = [
-        "https://people.redhat.com/abologna/shared_filesystems/libvirt-daemon-driver-qemu-10.10.0-6.0.shared_filesystems.el9.x86_64.rpm",
+        "https://people.redhat.com/abologna/shared_filesystems/libvirt-daemon-driver-qemu-10.10.0-6.1.shared_filesystems.el9.x86_64.rpm",
     ],
 )
 
 rpm(
-    name = "libvirt-daemon-driver-secret-0__10.10.0-6.0.shared_filesystems.el9.x86_64",
-    sha256 = "02dc06d1788199d91aa5c2a338cab256b8d4a7f9a66685a7c0aaaafe1cfffa80",
+    name = "libvirt-daemon-driver-secret-0__10.10.0-6.1.shared_filesystems.el9.x86_64",
+    sha256 = "77959b84e3da91aa5d285a5fc11a58e40d0d7f8c0ebadd64e72cde58523d7f33",
     urls = [
-        "https://people.redhat.com/abologna/shared_filesystems/libvirt-daemon-driver-secret-10.10.0-6.0.shared_filesystems.el9.x86_64.rpm",
+        "https://people.redhat.com/abologna/shared_filesystems/libvirt-daemon-driver-secret-10.10.0-6.1.shared_filesystems.el9.x86_64.rpm",
     ],
 )
 
 rpm(
-    name = "libvirt-daemon-driver-storage-core-0__10.10.0-6.0.shared_filesystems.el9.x86_64",
-    sha256 = "6e5079c4f06a355e3f13d4589e9459506354907cb8ab5cc784e417ff6038b191",
+    name = "libvirt-daemon-driver-storage-core-0__10.10.0-6.1.shared_filesystems.el9.x86_64",
+    sha256 = "373e7ee5133feec758b54821c74293fd7f349574bdfbd30122b7ada8c3450b41",
     urls = [
-        "https://people.redhat.com/abologna/shared_filesystems/libvirt-daemon-driver-storage-core-10.10.0-6.0.shared_filesystems.el9.x86_64.rpm",
+        "https://people.redhat.com/abologna/shared_filesystems/libvirt-daemon-driver-storage-core-10.10.0-6.1.shared_filesystems.el9.x86_64.rpm",
     ],
 )
 
@@ -4430,10 +4430,10 @@ rpm(
 )
 
 rpm(
-    name = "libvirt-daemon-log-0__10.10.0-6.0.shared_filesystems.el9.x86_64",
-    sha256 = "842a7ba27d93b0701b1872efca3685efc8f52bf1dc818f32511f7f52e0dbf2f8",
+    name = "libvirt-daemon-log-0__10.10.0-6.1.shared_filesystems.el9.x86_64",
+    sha256 = "7ba44f81f1d8dd8a5d269ec221c31f2c842bea36e1dde3135de32f3fc00c33d1",
     urls = [
-        "https://people.redhat.com/abologna/shared_filesystems/libvirt-daemon-log-10.10.0-6.0.shared_filesystems.el9.x86_64.rpm",
+        "https://people.redhat.com/abologna/shared_filesystems/libvirt-daemon-log-10.10.0-6.1.shared_filesystems.el9.x86_64.rpm",
     ],
 )
 
@@ -4456,10 +4456,10 @@ rpm(
 )
 
 rpm(
-    name = "libvirt-devel-0__10.10.0-6.0.shared_filesystems.el9.x86_64",
-    sha256 = "64b99ce8f824f67a411c5501b30a00d8e83a8e64ccfccf8ebfa79d8016c39a2a",
+    name = "libvirt-devel-0__10.10.0-6.1.shared_filesystems.el9.x86_64",
+    sha256 = "705118972820d2d41c19266538ef45d6ebc0e406ee61df6f9cf11388126bf2b8",
     urls = [
-        "https://people.redhat.com/abologna/shared_filesystems/libvirt-devel-10.10.0-6.0.shared_filesystems.el9.x86_64.rpm",
+        "https://people.redhat.com/abologna/shared_filesystems/libvirt-devel-10.10.0-6.1.shared_filesystems.el9.x86_64.rpm",
     ],
 )
 
@@ -4482,10 +4482,10 @@ rpm(
 )
 
 rpm(
-    name = "libvirt-libs-0__10.10.0-6.0.shared_filesystems.el9.x86_64",
-    sha256 = "15045b2afd4f0a31ba4a9436d707152de328024ea9d3b152fb3b9ef60a60b33e",
+    name = "libvirt-libs-0__10.10.0-6.1.shared_filesystems.el9.x86_64",
+    sha256 = "8a49bea1071f0a2989d5846c86fca2ca157bcab1c7ba0a763f09ac14889478e1",
     urls = [
-        "https://people.redhat.com/abologna/shared_filesystems/libvirt-libs-10.10.0-6.0.shared_filesystems.el9.x86_64.rpm",
+        "https://people.redhat.com/abologna/shared_filesystems/libvirt-libs-10.10.0-6.1.shared_filesystems.el9.x86_64.rpm",
     ],
 )
 
